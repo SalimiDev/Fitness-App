@@ -8,7 +8,7 @@ import ExerciseCard from './ExerciseCard';
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const exercisesPerPage = 9;
-
+    //pagination
     const indexOfLastExercise = currentPage * exercisesPerPage;
     const indexOfFristExercise = indexOfLastExercise - exercisesPerPage;
     const currentExercises = exercises.slice(indexOfFristExercise, indexOfLastExercise);
@@ -18,6 +18,24 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
         window.scrollTo({ top: 1800, behavior: 'smooth' });
     };
+
+    //handle set category filter
+    const BASE_URL = 'https://exercisedb.p.rapidapi.com';
+    
+    useEffect(() => {
+        const fetchExercisesData = async () => {
+            let exercisesData = [];
+
+            if (bodyPart === 'all') {
+                exercisesData = await fetchData(`${BASE_URL}/exercises`, exerciseOptions);
+            } else {
+                exercisesData = await fetchData(`${BASE_URL}/exercises/bodyPart/${bodyPart}`, exerciseOptions);
+            }
+
+            setExercises(exercisesData);
+        };
+        fetchExercisesData();
+    }, [bodyPart]);
 
     return (
         <Box id='exercises' sx={{ mt: { lg: '110px' } }} mt='50px' p='20px'>
