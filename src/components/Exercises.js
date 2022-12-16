@@ -8,6 +8,7 @@ import ExerciseCard from './ExerciseCard';
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const exercisesPerPage = 9;
+    
     //pagination
     const indexOfLastExercise = currentPage * exercisesPerPage;
     const indexOfFristExercise = indexOfLastExercise - exercisesPerPage;
@@ -21,7 +22,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
     //handle set category filter
     const BASE_URL = 'https://exercisedb.p.rapidapi.com';
-    
+
     useEffect(() => {
         const fetchExercisesData = async () => {
             let exercisesData = [];
