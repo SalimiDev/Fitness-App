@@ -9,7 +9,7 @@ export const exerciseOptions = {
 export const youtubeOptions = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'c1a01bce01msh04615fb6d5dfa83p10b830jsnffd1bf8ac6a1',
+      'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
       'X-RapidAPI-Host': 'youtube-search-and-download.p.rapidapi.com'
     }
   };
